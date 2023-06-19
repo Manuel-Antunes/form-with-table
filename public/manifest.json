@@ -1,0 +1,24 @@
+{
+  "_index-ca7b1288.js": {
+    "file": "assets/index-ca7b1288.js",
+    "imports": [
+      "resources/frontend/main.tsx"
+    ],
+    "isDynamicEntry": true
+  },
+  "resources/frontend/main.css": {
+    "file": "assets/main-e7c820d6.css",
+    "src": "resources/frontend/main.css"
+  },
+  "resources/frontend/main.tsx": {
+    "css": [
+      "assets/main-e7c820d6.css"
+    ],
+    "dynamicImports": [
+      "_index-ca7b1288.js"
+    ],
+    "file": "assets/main-0b6ef55d.js",
+    "isEntry": true,
+    "src": "resources/frontend/main.tsx"
+  }
+}

@@ -1,0 +1,41 @@
+# For more information: https://github.com/julien-r44/adonis-sail
+version: '3'
+name: "records"
+services:
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    container_name: records_mailhog
+    ports:
+      - '${MAILHOG_PORT:-1025}:1025'
+      - '${MAILHOG_DASHBOARD_PORT:-8025}:8025'
+    networks:
+      - sail
+  app:
+    container_name: records_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - '${PORT:-3333}:3333'
+    volumes:
+      - .:/home/node/app
+      - /home/node/app/node_modules
+    env_file:
+      - .env
+    environment:
+      DB_HOST: 'pgsql'
+      MONGODB_URL: 'mongodb://mongo:27017'
+      REDIS_HOST: 'redis'
+      NODE_ENV: 'production'
+      SMTP_HOST: 'mailhog'
+      S3_ENDPOINT: 'http://minio:9000'
+networks:
+  sail:
+    driver: bridge
+
+volumes:
+  sailredis:
+  sailpgsql:
+  sailminio:
+  sailmongo:
